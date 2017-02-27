@@ -13,16 +13,16 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
-    <link href="{{ URL::to('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/becoded/plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 
     <!-- Waves Effect Css -->
-    <link href="{{ URL::to('plugins/node-waves/waves.css') }}" rel="stylesheet" />
+    <link href="{{ asset('vendor/becoded/plugins/node-waves/waves.css') }}" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="{{ URL::to('plugins/animate-css/animate.css') }}" rel="stylesheet" />
+    <link href="{{ asset('vendor/becoded/plugins/animate-css/animate.css') }}" rel="stylesheet" />
 
     <!-- Custom Css -->
-    <link href="{{ URL::to('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/becoded/css/style.css') }}" rel="stylesheet">
     <title>@yield('head_title')</title>
 </head>
 
@@ -74,21 +74,21 @@
 </div>
 
 <!-- Jquery Core Js -->
-<script src="{{ URL::to('plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('vendor/becoded/plugins/jquery/jquery.min.js') }}"></script>
 
 <!-- Bootstrap Core Js -->
-<script src="{{ URL::to('plugins/bootstrap/js/bootstrap.js') }}"></script>
+<script src="{{ asset('vendor/becoded/plugins/bootstrap/js/bootstrap.js') }}"></script>
 
 <!-- Waves Effect Plugin Js -->
-<script src="{{ URL::to('plugins/node-waves/waves.js') }}"></script>
+<script src="{{ asset('vendor/becoded/plugins/node-waves/waves.js') }}"></script>
 
 <!-- Validation Plugin Js -->
-<script src="{{ URL::to('plugins/jquery-validation/jquery.validate.js') }}"></script>
+<script src="{{ asset('vendor/becoded/plugins/jquery-validation/jquery.validate.js') }}"></script>
 
 <!-- Custom Js -->
-<script src="{{ URL::to('js/admin.js') }}"></script>
+<script src="{{ asset('vendor/becoded/js/admin.js') }}"></script>
 
-<script src="{{ URL::to('js/pages/examples/sign-in.js') }}"></script>
+<script src="{{ asset('vendor/becoded/js/pages/examples/sign-in.js') }}"></script>
 </body>
 
 </html>
