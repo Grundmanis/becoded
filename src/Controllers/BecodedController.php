@@ -8,11 +8,11 @@ class BecodedController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->has('weight') && $request->has('high')) {
-            $weight = $request->get('weight');
-            $high = $request->get('high');
-            $becoded = round($weight / ($high * $high),1);
-        }
-        return view('becoded::index', compact('becoded'));
+        $errors = [];
+        return view('becoded::index', compact('errors'));
+    }
+    public function postSignin(Request $request)
+    {
+        dump($request);
     }
 }
