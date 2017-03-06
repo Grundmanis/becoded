@@ -35,26 +35,9 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <form action="{{ route('becoded_path') }}" method="get" role="form">
-                <legend>Calculate your becoded</legend>
-
-                @if(!empty($becoded))
-                    <div class="alert alert-success">
-                        Your becoded is: {{ $becoded }}
-                    </div>
-                @endif
-
-
-                <div class="form-group">
-                    <input type="number" class="form-control" name="weight" id="" placeholder="Weight" required>
-                </div>
-
-                <div class="form-group">
-                    <input type="text" class="form-control" name="high" id="" placeholder="High" required>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Calculate</button>
-            </form>
+            <p>Hello, {{ Auth::guard('becoded_user')->user()->name }}</p>
+            <a href="{{ route('becoded.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+            <form id="logout-form" style="display: none;" method="post" action="{{route('becoded.logout')}}">{{csrf_field()}}</form>
         </div>
     </div>
 

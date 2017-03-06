@@ -13,10 +13,15 @@ class BecodedServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
-        $this->loadViewsFrom(__DIR__ . '/Views', 'becoded');
+        $this->loadMigrationsFrom(__DIR__.'/../migrations');
+        $this->loadViewsFrom(__DIR__ . '/Views', 'becoded_view');
         $this->publishes([
             __DIR__.'/../public/' => public_path('vendor/becoded'),
         ]);
+        $this->publishes([
+            __DIR__.'/../becoded_config.php' => config_path('becoded_config.php'),
+        ]);
+
     }
     /**
      * Register the application services.

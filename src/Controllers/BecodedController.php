@@ -2,17 +2,13 @@
 namespace Grundmanis\Becoded\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 
 class BecodedController extends Controller
 {
     public function index(Request $request)
     {
         $errors = [];
-        return view('becoded::index', compact('errors'));
-    }
-    public function postSignin(Request $request)
-    {
-        dump($request);
+        return view('becoded_view::index', compact('errors'));
     }
 }
