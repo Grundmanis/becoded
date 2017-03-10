@@ -21,6 +21,8 @@ function skinChanger() {
         $body.removeClass('theme-' + existTheme);
         $this.addClass('active');
 
+        localStorage.setItem("becoded_theme_color", $this.data('theme'));
+
         $body.addClass('theme-' + $this.data('theme'));
     });
 }

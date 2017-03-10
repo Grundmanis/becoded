@@ -60,6 +60,14 @@
 <!-- Waves Effect Plugin Js -->
 <script src="{{ asset('vendor/becoded/plugins/node-waves/waves.js') }}"></script>
 
+<script>
+    var color = localStorage.getItem("becoded_theme_color");
+    console.log(color);
+    if (color) {
+        $('body').addClass('theme-' + color);
+    }
+</script>
+
 @yield('scripts')
 
 </body>
