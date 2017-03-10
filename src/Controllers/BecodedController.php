@@ -9,6 +9,6 @@ class BecodedController extends Controller
     public function index(Request $request)
     {
         $errors = [];
-        return view('becoded_view::index', compact('errors'));
+        return view('becoded_view::dashboard', compact('errors'));
     }
 }
