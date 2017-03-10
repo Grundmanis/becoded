@@ -24,6 +24,12 @@ class CreateBecodedTables extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::create($this->prefix.'logs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('text');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -34,5 +40,6 @@ class CreateBecodedTables extends Migration
     public function down()
     {
         Schema::drop($this->prefix.'users');
+        Schema::drop($this->prefix.'logs');
     }
 }

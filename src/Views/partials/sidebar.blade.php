@@ -33,13 +33,13 @@
                         <span>Home</span>
                     </a>
                 </li>
-                <li {{ (Request::is('becoded/users') ? 'class=active' : '') }}>
+                <li {{ (Request::is('becoded/users*') ? 'class=active' : '') }}>
                     <a href="{{ route('becoded.users') }}">
                         <i class="material-icons">perm_identity</i>
                         <span>Users</span>
                     </a>
                 </li>
-                <li {{ (Request::is('becoded/pages') ? 'class=active' : '') }}>
+                <li style="border-bottom: 1px solid #ccc;" {{ (Request::is('becoded/pages') ? 'class=active' : '') }}>
                     <a href="{{ route('becoded.dashboard') }}">
                         <i class="material-icons">content_copy</i>
                         <span>Pages</span>
