@@ -3,6 +3,12 @@ Route::group(['namespace' => 'Grundmanis\Becoded\Controllers', 'prefix' => 'beco
 
     Route::group(['middleware' => ['auth:becoded_user']], function () {
         Route::get('/', ['as' => 'becoded.dashboard', 'uses' => 'BecodedController@index']);
+        Route::get('users/', ['as' => 'becoded.users', 'uses' => 'BecodedController@getUsers']);
+        Route::get('users/add', ['as' => 'becoded.users.add', 'uses' => 'BecodedController@getAddUser']);
+        Route::post('users/add', ['as' => 'becoded.users.add', 'uses' => 'BecodedController@postAddUser']);
+        Route::get('users/delete/{id}', ['as' => 'becoded.users.delete', 'uses' => 'BecodedController@getDeleteUser']);
+        Route::get('users/edit/{id}', ['as' => 'becoded.users.edit', 'uses' => 'BecodedController@getEditUser']);
+        Route::post('users/edit/{id}', ['as' => 'becoded.users.edit', 'uses' => 'BecodedController@postEditUser']);
     });
 
     Route::get('login', ['as' => 'becoded.login', 'uses' => 'BecodedAuth\LoginController@showLoginForm']);

@@ -33,50 +33,49 @@
                         <span>Home</span>
                     </a>
                 </li>
-                <li {{ (Request::is('users') ? 'class=active' : '') }}>
-                    <a href="{{ route('becoded.dashboard') }}">
+                <li {{ (Request::is('becoded/users') ? 'class=active' : '') }}>
+                    <a href="{{ route('becoded.users') }}">
                         <i class="material-icons">perm_identity</i>
                         <span>Users</span>
                     </a>
                 </li>
-                <li {{ (Request::is('pages') ? 'class=active' : '') }}>
+                <li {{ (Request::is('becoded/pages') ? 'class=active' : '') }}>
                     <a href="{{ route('becoded.dashboard') }}">
                         <i class="material-icons">content_copy</i>
                         <span>Pages</span>
                     </a>
                 </li>
-                <li class="header">MODULES</li>
-                <li {{ (Request::is('feedback') ? 'class=active' : '') }}>
+                <li {{ (Request::is('becoded/feedback') ? 'class=active' : '') }}>
                     <a href="{{ route('becoded.dashboard') }}">
                         <i class="material-icons">mode_edit</i>
                         <span>Feedback</span>
                     </a>
                 </li>
-                <li {{ (Request::is('clients') ? 'class=active' : '') }}>
+                <li {{ (Request::is('becoded/clients') ? 'class=active' : '') }}>
                     <a href="{{ route('becoded.dashboard') }}">
                         <i class="material-icons">perm_identity</i>
                         <span>Clients</span>
                     </a>
                 </li>
-                <li {{ (Request::is('payments') ? 'class=active' : '') }}>
+                <li {{ (Request::is('becoded/payments') ? 'class=active' : '') }}>
                     <a href="{{ route('becoded.dashboard') }}">
                         <i class="material-icons">payment</i>
                         <span>Payments</span>
                     </a>
                 </li>
-                <li {{ (Request::is('ads') ? 'class=active' : '') }}>
+                <li {{ (Request::is('becoded/ads') ? 'class=active' : '') }}>
                     <a href="{{ route('becoded.dashboard') }}">
                         <i class="material-icons">view_module</i>
                         <span>Ads</span>
                     </a>
                 </li>
-                <li {{ (Request::is('banners') ? 'class=active' : '') }}>
+                <li {{ (Request::is('becoded/banners') ? 'class=active' : '') }}>
                     <a href="{{ route('becoded.dashboard') }}">
                         <i class="material-icons">view_list</i>
                         <span>Banners</span>
                     </a>
                 </li>
-                <li {{ (Request::is('complaints') ? 'class=active' : '') }}>
+                <li {{ (Request::is('becoded/complaints') ? 'class=active' : '') }}>
                     <a href="{{ route('becoded.dashboard') }}">
                         <i class="material-icons">chat_bubble_outline</i>
                         <span>Complaints</span>
