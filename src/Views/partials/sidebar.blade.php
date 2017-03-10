@@ -4,7 +4,7 @@
         <!-- User Info -->
         <div class="user-info">
             <div class="image">
-                <img src="{{ asset('images/user.png') }}" width="48" height="48" alt="User" />
+                <img src="{{ asset('vendor/becoded/images/user.png') }}" width="48" height="48" alt="User" />
             </div>
             <div class="info-container">
                 <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::guard('becoded_user')->user()->name }}</div>
@@ -26,11 +26,60 @@
         <!-- Menu -->
         <div class="menu">
             <ul class="list">
-                <li class="header">MAIN NAVIGATION</li>
-                <li {{ (Request::is('cms') ? 'class=active' : '') }}>
+                <li class="header">NAVIGATION</li>
+                <li {{ (Request::is('becoded') ? 'class=active' : '') }}>
                     <a href="{{ route('becoded.dashboard') }}">
                         <i class="material-icons">home</i>
                         <span>Home</span>
+                    </a>
+                </li>
+                <li {{ (Request::is('users') ? 'class=active' : '') }}>
+                    <a href="{{ route('becoded.dashboard') }}">
+                        <i class="material-icons">perm_identity</i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li {{ (Request::is('pages') ? 'class=active' : '') }}>
+                    <a href="{{ route('becoded.dashboard') }}">
+                        <i class="material-icons">content_copy</i>
+                        <span>Pages</span>
+                    </a>
+                </li>
+                <li class="header">MODULES</li>
+                <li {{ (Request::is('feedback') ? 'class=active' : '') }}>
+                    <a href="{{ route('becoded.dashboard') }}">
+                        <i class="material-icons">mode_edit</i>
+                        <span>Feedback</span>
+                    </a>
+                </li>
+                <li {{ (Request::is('clients') ? 'class=active' : '') }}>
+                    <a href="{{ route('becoded.dashboard') }}">
+                        <i class="material-icons">perm_identity</i>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li {{ (Request::is('payments') ? 'class=active' : '') }}>
+                    <a href="{{ route('becoded.dashboard') }}">
+                        <i class="material-icons">payment</i>
+                        <span>Payments</span>
+                    </a>
+                </li>
+                <li {{ (Request::is('ads') ? 'class=active' : '') }}>
+                    <a href="{{ route('becoded.dashboard') }}">
+                        <i class="material-icons">view_module</i>
+                        <span>Ads</span>
+                    </a>
+                </li>
+                <li {{ (Request::is('banners') ? 'class=active' : '') }}>
+                    <a href="{{ route('becoded.dashboard') }}">
+                        <i class="material-icons">view_list</i>
+                        <span>Banners</span>
+                    </a>
+                </li>
+                <li {{ (Request::is('complaints') ? 'class=active' : '') }}>
+                    <a href="{{ route('becoded.dashboard') }}">
+                        <i class="material-icons">chat_bubble_outline</i>
+                        <span>Complaints</span>
                     </a>
                 </li>
             </ul>

@@ -33,7 +33,7 @@
 </head>
 
 <body class="theme-red">
-@include('becoded_view::partials.nav')
+@include('becoded_view::partials.topNav')
 <!-- #Top Bar -->
 @include('becoded_view::partials.sidebar')
 
