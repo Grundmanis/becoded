@@ -59,7 +59,7 @@
                                                     </select>
                                                 </td>
                                                 <td class="text-right">
-                                                    <input type="checkbox" id="md_checkbox_<?= $key; ?>" class="filled-in chk-col-purple js-page-in-menu" />
+                                                    <input data-uri="{{ $route->uri }}" data-as="{{ !empty($route->action['as']) ? $route->action['as'] : ''}}" data-middleware="{{ is_array($route->action['middleware']) ? $route->action['middleware'][0] : $route->action['middleware'] }}" data-controller="{{ !empty($route->action['controller']) ? $route->action['controller'] : '' }}" type="checkbox" id="md_checkbox_<?= $key; ?>" class="filled-in chk-col-purple js-page-in-menu" />
                                                     <label for="md_checkbox_<?= $key; ?>"></label>
                                                 </td>
                                             </tr>
