@@ -21,16 +21,16 @@
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <th>Uri</th>
-                                        <th>Middleware</th>
-                                        <th>Controller</th>
+                                        {{--<th>Middleware</th>--}}
+                                        {{--<th>Controller</th>--}}
                                         <th>As</th>
                                         <th>Tag</th>
                                         <th>In menu</th>
                                     </thead>
                                     <tfoot>
                                         <th>Uri</th>
-                                        <th>Middleware</th>
-                                        <th>Controller</th>
+                                        {{--<th>Middleware</th>--}}
+                                        {{--<th>Controller</th>--}}
                                         <th>As</th>
                                         <th>Tag</th>
                                         <th>In menu</th>
@@ -40,26 +40,26 @@
                                             @if ($route->methods[0] == 'GET' && !preg_match('/becoded/',$route->uri))
                                             <tr>
                                                 <td>{{ $route->uri }}</td>
-                                                <td>{{ is_array($route->action['middleware']) ? $route->action['middleware'][0] : $route->action['middleware'] }}</td>
-                                                <td>{{ !empty($route->action['controller']) ? $route->action['controller'] : '' }}</td>
+                                                {{--<td>{{ is_array($route->action['middleware']) ? $route->action['middleware'][0] : $route->action['middleware'] }}</td>--}}
+                                                {{--<td>{{ !empty($route->action['controller']) ? $route->action['controller'] : '' }}</td>--}}
                                                 <td>{{ !empty($route->action['as']) ? $route->action['as'] : ''}}</td>
                                                 <td class="text-right">
-                                                    <select class="form-control show-tick">
-                                                    <option value="">-- Please select --</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
+                                                    <select class="form-control show-tick js-page-change-tag">
+                                                        <option value="">-- Please select --</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                 </td>
                                                 <td class="text-right">
-                                                    <input type="checkbox" id="md_checkbox_<?= $key; ?>" class="filled-in chk-col-purple" />
+                                                    <input type="checkbox" id="md_checkbox_<?= $key; ?>" class="filled-in chk-col-purple js-page-in-menu" />
                                                     <label for="md_checkbox_<?= $key; ?>"></label>
                                                 </td>
                                             </tr>
@@ -98,6 +98,7 @@
 
     <!-- Demo Js -->
     <script src="{{ asset('vendor/becoded/js/demo.js') }}"></script>
+    <script src="{{ asset('vendor/becoded/js/pages.js') }}"></script>
 @endsection
 
 @section('styles')
