@@ -13,6 +13,8 @@
                     <div class="header">
                         <h2>
                             Pages
+                            <a href="{{ route('becoded.users.add') }}" class="btn btn-lg bg-light-blue waves-effect">Add new</a>
+                            <a href="{{ route('becoded.users.add') }}" class="btn btn-lg bg-orange waves-effect">Clear database</a>
                         </h2>
                     </div>
                     <div class="body">
@@ -23,7 +25,6 @@
                                     <li>Edit content of page/route</li>
                                     <li>Delete page/route</li>
                                     <li>Delete not used pages from database</li>
-                                    <li>Uncheck in_menu - do not delete from database</li>
                                 </ul>
                                 {{--@foreach($routes as $key => $route)--}}
                                     {{--@if ($route->methods[0] == 'GET' && !preg_match('/becoded/',$route->uri))--}}
@@ -38,6 +39,7 @@
                                         {{--<th>As</th>--}}
                                         <th>Tag</th>
                                         <th>In menu</th>
+                                        <th>Actions</th>
                                     </thead>
                                     <tfoot>
                                         <th>Uri</th>
@@ -46,6 +48,7 @@
                                         {{--<th>As</th>--}}
                                         <th>Tag</th>
                                         <th>In menu</th>
+                                        <th>Actions</th>
                                     </tfoot>
                                     <tbody>
                                         @foreach($routes as $key => $route)
@@ -70,9 +73,17 @@
                                                         <option @if (!empty($in_menu[$route->uri]->tag) && $in_menu[$route->uri]->tag == 10) selected @endif value="10">10</option>
                                                     </select>
                                                 </td>
-                                                <td class="text-right">
-                                                    <input @if (!empty($in_menu[$route->uri])) checked @endif type="checkbox" id="md_checkbox_<?= $key; ?>" class="filled-in chk-col-purple js-page-in-menu" />
+                                                <td class="text-center">
+                                                    <input @if (!empty($in_menu[$route->uri]) && $in_menu[$route->uri]->in_menu) checked @endif type="checkbox" id="md_checkbox_<?= $key; ?>" class="filled-in chk-col-purple js-page-in-menu" />
                                                     <label for="md_checkbox_<?= $key; ?>"></label>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('becoded.pages') }}" class="btn bg-deep-purple waves-effect">
+                                                        <i class="material-icons">mode_edit</i>
+                                                    </a>
+                                                    <a href="{{ route('becoded.pages') }}" class="btn bg-red waves-effect">
+                                                        <i class="material-icons">delete</i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             @endif

@@ -58,8 +58,11 @@ class PageController extends BaseController
                 $result['response'] = 'Page added in menu';
 
             } else {
-                DB::table('becoded_pages')->where('uri','=',$request->uri)
-                    ->delete();
+
+                DB::table('becoded_pages')
+                    ->where('uri','=',$request->uri)
+                    ->update(['in_menu' => !$route[0]->in_menu]);
+
                 DB::table('becoded_logs')->insert(
                     [
                         'text' => 'Page delete from menu: ' . $request->uri ,

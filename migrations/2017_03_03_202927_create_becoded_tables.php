@@ -37,12 +37,14 @@ class CreateBecodedTables extends Migration
         Schema::create($this->prefix.'pages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('uri')->unique();
+            $table->longText('text')->nullable();
+            $table->longText('excerpt')->nullable();
             $table->string('middleware');
             $table->string('controller')->nullable();
             $table->string('as')->nullable();
             $table->integer('tag')->nullable();
             $table->tinyInteger('in_menu')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

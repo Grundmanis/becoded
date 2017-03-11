@@ -59,10 +59,6 @@ $(function () {
             controller = tr.data('controller'),
             tag = $this.val();
 
-
-        tr
-            .find('input').attr('checked', true);
-
         $.ajax({
             type: 'POST',
             url: '/becoded/pages',
