@@ -18,6 +18,13 @@
                     <div class="body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <ul>
+                                    <li>Add new page/route</li>
+                                    <li>Edit content of page/route</li>
+                                    <li>Delete page/route</li>
+                                    <li>Delete not used pages from database</li>
+                                    <li>Uncheck in_menu - do not delete from database</li>
+                                </ul>
                                 {{--@foreach($routes as $key => $route)--}}
                                     {{--@if ($route->methods[0] == 'GET' && !preg_match('/becoded/',$route->uri))--}}
                                         {{--{{dump($route)}}--}}
@@ -28,7 +35,7 @@
                                         <th>Uri</th>
                                         {{--<th>Middleware</th>--}}
                                         {{--<th>Controller</th>--}}
-                                        <th>As</th>
+                                        {{--<th>As</th>--}}
                                         <th>Tag</th>
                                         <th>In menu</th>
                                     </thead>
@@ -36,7 +43,7 @@
                                         <th>Uri</th>
                                         {{--<th>Middleware</th>--}}
                                         {{--<th>Controller</th>--}}
-                                        <th>As</th>
+                                        {{--<th>As</th>--}}
                                         <th>Tag</th>
                                         <th>In menu</th>
                                     </tfoot>
@@ -44,10 +51,10 @@
                                         @foreach($routes as $key => $route)
                                             @if ($route->methods[0] == 'GET' && !preg_match('/becoded/',$route->uri))
                                             <tr data-uri="{{ $route->uri }}" data-as="{{ !empty($route->action['as']) ? $route->action['as'] : ''}}" data-middleware="{{ is_array($route->action['middleware']) ? $route->action['middleware'][0] : $route->action['middleware'] }}" data-controller="{{ !empty($route->action['controller']) ? $route->action['controller'] : '' }}">
-                                                <td>{{ $route->uri }}</td>
+                                                <td><a href="/{{ $route->uri }}">{{ $route->uri }}</a></td>
                                                 {{--<td>{{ is_array($route->action['middleware']) ? $route->action['middleware'][0] : $route->action['middleware'] }}</td>--}}
                                                 {{--<td>{{ !empty($route->action['controller']) ? $route->action['controller'] : '' }}</td>--}}
-                                                <td>{{ !empty($route->action['as']) ? $route->action['as'] : ''}}</td>
+                                                {{--<td>{{ !empty($route->action['as']) ? $route->action['as'] : ''}}</td>--}}
                                                 <td class="text-right">
                                                     <select class="form-control show-tick js-page-change-tag">
                                                         <option value="">-- Please select --</option>
