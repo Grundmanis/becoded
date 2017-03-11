@@ -14,6 +14,15 @@ Route::group(['namespace' => 'Grundmanis\Becoded\Controllers', 'prefix' => 'beco
             Route::get('/edit/{id}', ['as' => 'becoded.users.edit', 'uses' => 'UserController@getEditUser']);
             Route::post('/edit/{id}', ['as' => 'becoded.users.edit', 'uses' => 'UserController@postEditUser']);
         });
+
+        Route::group(['prefix' => 'pages'], function () {
+            Route::get('/', ['as' => 'becoded.pages', 'uses' => 'PageController@getPages']);
+            Route::get('/add', ['as' => 'becoded.pages.add', 'uses' => 'PageController@getAddPage']);
+            Route::post('/add', ['as' => 'becoded.pages.add', 'uses' => 'PageController@postAddPage']);
+            Route::get('/delete/{id}', ['as' => 'becoded.pages.delete', 'uses' => 'PageController@getDeletePage']);
+            Route::get('/edit/{id}', ['as' => 'becoded.pages.edit', 'uses' => 'PageController@getEditPage']);
+            Route::post('/edit/{id}', ['as' => 'becoded.pages.edit', 'uses' => 'PageController@postEditPage']);
+        });
         
     });
 

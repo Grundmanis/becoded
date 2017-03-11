@@ -3,18 +3,18 @@
     <aside id="leftsidebar" class="sidebar">
         <!-- User Info -->
         <div class="user-info">
-            <div class="image">
-                <img src="{{ asset('vendor/becoded/images/user.png') }}" width="48" height="48" alt="User" />
-            </div>
+            {{--<div class="image">--}}
+                {{--<img src="{{ asset('vendor/becoded/images/user.png') }}" width="48" height="48" alt="User" />--}}
+            {{--</div>--}}
             <div class="info-container">
                 <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::guard('becoded_user')->user()->name }}</div>
                 <div class="email">{{ Auth::guard('becoded_user')->user()->email }}</div>
                 <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right">
-                        <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                        <li role="seperator" class="divider"></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">settings_brightness</i>Edit background</a></li>
+                        <li><a href="{{ route('becoded.users.edit', ['id' => Auth::guard('becoded_user')->user()->id]) }}"><i class="material-icons">person</i>Profile</a></li>
+                        {{--<li role="seperator" class="divider"></li>--}}
+                        {{--<li><a href="javascript:void(0);"><i class="material-icons">settings_brightness</i>Edit background</a></li>--}}
                         <li role="seperator" class="divider"></li>
                         <li><a href="{{ route('becoded.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons">input</i>Sign Out</a></li>
                     </ul>
@@ -40,47 +40,47 @@
                     </a>
                 </li>
                 <li style="border-bottom: 1px solid #ccc;" {{ (Request::is('becoded/pages') ? 'class=active' : '') }}>
-                    <a href="{{ route('becoded.dashboard') }}">
+                    <a href="{{ route('becoded.pages') }}">
                         <i class="material-icons">content_copy</i>
                         <span>Pages</span>
                     </a>
                 </li>
-                <li {{ (Request::is('becoded/feedback') ? 'class=active' : '') }}>
-                    <a href="{{ route('becoded.dashboard') }}">
-                        <i class="material-icons">mode_edit</i>
-                        <span>Feedback</span>
-                    </a>
-                </li>
-                <li {{ (Request::is('becoded/clients') ? 'class=active' : '') }}>
-                    <a href="{{ route('becoded.dashboard') }}">
-                        <i class="material-icons">perm_identity</i>
-                        <span>Clients</span>
-                    </a>
-                </li>
-                <li {{ (Request::is('becoded/payments') ? 'class=active' : '') }}>
-                    <a href="{{ route('becoded.dashboard') }}">
-                        <i class="material-icons">payment</i>
-                        <span>Payments</span>
-                    </a>
-                </li>
-                <li {{ (Request::is('becoded/ads') ? 'class=active' : '') }}>
-                    <a href="{{ route('becoded.dashboard') }}">
-                        <i class="material-icons">view_module</i>
-                        <span>Ads</span>
-                    </a>
-                </li>
-                <li {{ (Request::is('becoded/banners') ? 'class=active' : '') }}>
-                    <a href="{{ route('becoded.dashboard') }}">
-                        <i class="material-icons">view_list</i>
-                        <span>Banners</span>
-                    </a>
-                </li>
-                <li {{ (Request::is('becoded/complaints') ? 'class=active' : '') }}>
-                    <a href="{{ route('becoded.dashboard') }}">
-                        <i class="material-icons">chat_bubble_outline</i>
-                        <span>Complaints</span>
-                    </a>
-                </li>
+                {{--<li {{ (Request::is('becoded/feedback') ? 'class=active' : '') }}>--}}
+                    {{--<a href="{{ route('becoded.dashboard') }}">--}}
+                        {{--<i class="material-icons">mode_edit</i>--}}
+                        {{--<span>Feedback</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li {{ (Request::is('becoded/clients') ? 'class=active' : '') }}>--}}
+                    {{--<a href="{{ route('becoded.dashboard') }}">--}}
+                        {{--<i class="material-icons">perm_identity</i>--}}
+                        {{--<span>Clients</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li {{ (Request::is('becoded/payments') ? 'class=active' : '') }}>--}}
+                    {{--<a href="{{ route('becoded.dashboard') }}">--}}
+                        {{--<i class="material-icons">payment</i>--}}
+                        {{--<span>Payments</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li {{ (Request::is('becoded/ads') ? 'class=active' : '') }}>--}}
+                    {{--<a href="{{ route('becoded.dashboard') }}">--}}
+                        {{--<i class="material-icons">view_module</i>--}}
+                        {{--<span>Ads</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li {{ (Request::is('becoded/banners') ? 'class=active' : '') }}>--}}
+                    {{--<a href="{{ route('becoded.dashboard') }}">--}}
+                        {{--<i class="material-icons">view_list</i>--}}
+                        {{--<span>Banners</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li {{ (Request::is('becoded/complaints') ? 'class=active' : '') }}>--}}
+                    {{--<a href="{{ route('becoded.dashboard') }}">--}}
+                        {{--<i class="material-icons">chat_bubble_outline</i>--}}
+                        {{--<span>Complaints</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
             </ul>
         </div>
         <!-- #Menu -->
