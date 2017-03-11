@@ -5,8 +5,9 @@ use Grundmanis\Becoded\Models\BecodedUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
 
     public function getUsers(Request $request)
@@ -29,6 +30,14 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->name = $request->name;
         $user->save();
+
+        DB::table('becoded_logs')->insert(
+            [
+                'text' => 'New user added: ' . $request->email,
+                'icon' => 'person',
+            ]
+        );
+
         return redirect()->route('becoded.users');
 
     }
@@ -37,6 +46,14 @@ class UserController extends Controller
     {
 
         $user = BecodedUser::find($id);
+
+        DB::table('becoded_logs')->insert(
+            [
+                'text' => 'User deleted: ' . $user->email,
+                'icon' => 'person',
+            ]
+        );
+
         $user->delete();
 
         return redirect()->route('becoded.users');
@@ -61,6 +78,14 @@ class UserController extends Controller
             $user->password = bcrypt($request->password);
         }
         $user->update();
+
+        DB::table('becoded_logs')->insert(
+            [
+                'text' => 'User updated: ' . $user->email,
+                'icon' => 'person',
+            ]
+        );
+
         return redirect()->route('becoded.users');
 
     }

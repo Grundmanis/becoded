@@ -23,6 +23,10 @@ Route::group(['namespace' => 'Grundmanis\Becoded\Controllers', 'prefix' => 'beco
             Route::get('/edit/{id}', ['as' => 'becoded.pages.edit', 'uses' => 'PageController@getEditPage']);
             Route::post('/edit/{id}', ['as' => 'becoded.pages.edit', 'uses' => 'PageController@postEditPage']);
         });
+
+        Route::group(['prefix' => 'logs'], function () {
+            Route::get('/', ['as' => 'becoded.logs', 'uses' => 'BaseController@getLogs']);
+        });
         
     });
 

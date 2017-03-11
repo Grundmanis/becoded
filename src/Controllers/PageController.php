@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 
-class PageController extends Controller
+class PageController extends BaseController
 {
 
     public function getPages(Request $request)

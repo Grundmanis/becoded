@@ -2,9 +2,8 @@
 namespace Grundmanis\Becoded\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class BecodedController extends Controller
+class BecodedController extends BaseController
 {
     public function index(Request $request)
     {

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -28,6 +29,19 @@ class CreateBecodedTables extends Migration
         Schema::create($this->prefix.'logs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('text');
+            $table->string('icon')->nullable();
+            $table->tinyInteger('seen')->nullable();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+        });
+
+        Schema::create($this->prefix.'pages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('uri')->unique();
+            $table->string('middleware');
+            $table->string('controller')->nullable();
+            $table->string('as')->nullable();
+            $table->integer('tag')->nullable();
+            $table->tinyInteger('in_menu')->nullable();
             $table->timestamps();
         });
     }

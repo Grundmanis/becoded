@@ -39,10 +39,16 @@
                         <span>Users</span>
                     </a>
                 </li>
-                <li style="border-bottom: 1px solid #ccc;" {{ (Request::is('becoded/pages') ? 'class=active' : '') }}>
+                <li {{ (Request::is('becoded/pages') ? 'class=active' : '') }}>
                     <a href="{{ route('becoded.pages') }}">
                         <i class="material-icons">content_copy</i>
                         <span>Pages</span>
+                    </a>
+                </li>
+                <li style="border-bottom: 1px solid #ccc;" {{ (Request::is('becoded/logs') ? 'class=active' : '') }}>
+                    <a href="{{ route('becoded.logs') }}">
+                        <i class="material-icons">content_copy</i>
+                        <span>Logs</span>
                     </a>
                 </li>
                 {{--<li {{ (Request::is('becoded/feedback') ? 'class=active' : '') }}>--}}
