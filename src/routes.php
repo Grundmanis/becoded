@@ -17,6 +17,7 @@ Route::group(['namespace' => 'Grundmanis\Becoded\Controllers', 'prefix' => 'beco
 
         Route::group(['prefix' => 'pages'], function () {
             Route::get('/', ['as' => 'becoded.pages', 'uses' => 'PageController@getPages']);
+            Route::post('/', ['as' => 'becoded.pages', 'uses' => 'PageController@postPages']);
             Route::get('/add', ['as' => 'becoded.pages.add', 'uses' => 'PageController@getAddPage']);
             Route::post('/add', ['as' => 'becoded.pages.add', 'uses' => 'PageController@postAddPage']);
             Route::get('/delete/{id}', ['as' => 'becoded.pages.delete', 'uses' => 'PageController@getDeletePage']);

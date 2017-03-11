@@ -16,6 +16,55 @@ class PageController extends BaseController
         return view('becoded_view::pages.index', ['routes' => $routes]);
     }
 
+    public function postPages(Request $request)
+    {
+
+
+        if ($request->in_menu) {
+
+//            $route = DB::table('becoded_pages')
+//                ->where('uri','=',$request->uri)
+//                ->get();
+//
+//            if (!$route) {
+//                // Create page and set in menu
+//                DB::table('becoded_pages')
+//                    ->insert([
+//                        'uri' => $request->uri,
+//                        'middleware' => $request->middleware,
+//                        'controller' => $request->controller,
+//                        'as' => $request->as,
+//                        'in_menu' => 1,
+//                    ]);
+//            } else {
+//                // change in menu
+//                $route->in_menu = $request->setInMenu;
+//                $route->update();
+//            }
+            
+            
+
+            DB::table('becoded_logs')->insert(
+                [
+                    'text' => 'Updated menu',
+                    'icon' => 'menu',
+                ]
+            );
+        }
+        else if ($request->change_tag) {
+
+
+            DB::table('becoded_logs')->insert(
+                [
+                    'text' => 'Updated menu',
+                    'icon' => 'menu',
+                ]
+            );
+        } else {
+
+        }
+    }
+
     public function getAddPage(Request $request)
     {
         $pages = BecodedUser::all();
