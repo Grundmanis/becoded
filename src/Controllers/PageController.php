@@ -14,7 +14,12 @@ class PageController extends BaseController
     public function getPages(Request $request)
     {
         $routes = Route::getRoutes();
-        return view('becoded_view::pages.index', ['routes' => $routes]);
+        $pages = DB::table('becoded_pages')->get();
+        $in_menu = [];
+        foreach ($pages as $page) {
+            $in_menu[$page->uri] = $page;
+        }
+        return view('becoded_view::pages.index', ['routes' => $routes, 'in_menu' => $in_menu]);
     }
 
     public function postPages(Request $request)
@@ -22,7 +27,7 @@ class PageController extends BaseController
 
         $result = [
             'result' => 0,
-            'response' => ''
+            'response' => 'Could not save'
         ];
 
         if ($request->in_menu) {
@@ -72,7 +77,7 @@ class PageController extends BaseController
                 ->where('uri','=',$request->uri)
                 ->get();
 
-            if (!$route) {
+            if (!count($route)) {
                 // Create page and set in menu
                 DB::table('becoded_pages')
                     ->insert([
@@ -82,20 +87,30 @@ class PageController extends BaseController
                         'as' => $request->as,
                         'tag' => $request->tag,
                     ]);
+
+                DB::table('becoded_logs')->insert(
+                    [
+                        'text' => 'Page ' . $request->uri . ' added with tag: ' . $request->tag ,
+                        'icon' => 'menu',
+                    ]
+                );
+
             } else {
-                $route->tag = $request->tag;
-                $route->save();
+                DB::table('becoded_pages')
+                    ->where('uri','=',$request->uri)
+                    ->update(['tag' => $request->tag]);
+
+                DB::table('becoded_logs')->insert(
+                    [
+                        'text' => $request->tag ? 'Page ' . $request->uri . ' updated with tag: ' . $request->tag : 'Tag removed for ' . $request->uri . ' page',
+                        'icon' => 'menu',
+                    ]
+                );
+
             }
 
             $result['result'] = 1;
             $result['response'] = 'Page tagged successfully';
-
-            DB::table('becoded_logs')->insert(
-                [
-                    'text' => 'Page tagged with number: ' . $request->tag ,
-                    'icon' => 'menu',
-                ]
-            );
 
         } else {
             $result['result'] = 0;

@@ -18,6 +18,11 @@
                     <div class="body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                {{--@foreach($routes as $key => $route)--}}
+                                    {{--@if ($route->methods[0] == 'GET' && !preg_match('/becoded/',$route->uri))--}}
+                                        {{--{{dump($route)}}--}}
+                                    {{--@endif--}}
+                                {{--@endforeach--}}
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <th>Uri</th>
@@ -38,7 +43,7 @@
                                     <tbody>
                                         @foreach($routes as $key => $route)
                                             @if ($route->methods[0] == 'GET' && !preg_match('/becoded/',$route->uri))
-                                            <tr>
+                                            <tr data-uri="{{ $route->uri }}" data-as="{{ !empty($route->action['as']) ? $route->action['as'] : ''}}" data-middleware="{{ is_array($route->action['middleware']) ? $route->action['middleware'][0] : $route->action['middleware'] }}" data-controller="{{ !empty($route->action['controller']) ? $route->action['controller'] : '' }}">
                                                 <td>{{ $route->uri }}</td>
                                                 {{--<td>{{ is_array($route->action['middleware']) ? $route->action['middleware'][0] : $route->action['middleware'] }}</td>--}}
                                                 {{--<td>{{ !empty($route->action['controller']) ? $route->action['controller'] : '' }}</td>--}}
@@ -46,20 +51,20 @@
                                                 <td class="text-right">
                                                     <select class="form-control show-tick js-page-change-tag">
                                                         <option value="">-- Please select --</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
-                                                        <option value="10">10</option>
+                                                        <option @if (!empty($in_menu[$route->uri]->tag) && $in_menu[$route->uri]->tag == 1) selected @endif value="1">1</option>
+                                                        <option @if (!empty($in_menu[$route->uri]->tag) && $in_menu[$route->uri]->tag == 2) selected @endif value="2">2</option>
+                                                        <option @if (!empty($in_menu[$route->uri]->tag) && $in_menu[$route->uri]->tag == 3) selected @endif value="3">3</option>
+                                                        <option @if (!empty($in_menu[$route->uri]->tag) && $in_menu[$route->uri]->tag == 4) selected @endif value="4">4</option>
+                                                        <option @if (!empty($in_menu[$route->uri]->tag) && $in_menu[$route->uri]->tag == 5) selected @endif value="5">5</option>
+                                                        <option @if (!empty($in_menu[$route->uri]->tag) && $in_menu[$route->uri]->tag == 6) selected @endif value="6">6</option>
+                                                        <option @if (!empty($in_menu[$route->uri]->tag) && $in_menu[$route->uri]->tag == 7) selected @endif value="7">7</option>
+                                                        <option @if (!empty($in_menu[$route->uri]->tag) && $in_menu[$route->uri]->tag == 8) selected @endif value="8">8</option>
+                                                        <option @if (!empty($in_menu[$route->uri]->tag) && $in_menu[$route->uri]->tag == 9) selected @endif value="9">9</option>
+                                                        <option @if (!empty($in_menu[$route->uri]->tag) && $in_menu[$route->uri]->tag == 10) selected @endif value="10">10</option>
                                                     </select>
                                                 </td>
                                                 <td class="text-right">
-                                                    <input data-uri="{{ $route->uri }}" data-as="{{ !empty($route->action['as']) ? $route->action['as'] : ''}}" data-middleware="{{ is_array($route->action['middleware']) ? $route->action['middleware'][0] : $route->action['middleware'] }}" data-controller="{{ !empty($route->action['controller']) ? $route->action['controller'] : '' }}" type="checkbox" id="md_checkbox_<?= $key; ?>" class="filled-in chk-col-purple js-page-in-menu" />
+                                                    <input @if (!empty($in_menu[$route->uri])) checked @endif type="checkbox" id="md_checkbox_<?= $key; ?>" class="filled-in chk-col-purple js-page-in-menu" />
                                                     <label for="md_checkbox_<?= $key; ?>"></label>
                                                 </td>
                                             </tr>
