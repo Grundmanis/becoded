@@ -39,7 +39,7 @@
                         <span>Users</span>
                     </a>
                 </li>
-                <li {{ (Request::is('becoded/pages') ? 'class=active' : '') }}>
+                <li {{ (Request::is('becoded/pages*') ? 'class=active' : '') }}>
                     <a href="{{ route('becoded.pages') }}">
                         <i class="material-icons">content_copy</i>
                         <span>Pages</span>

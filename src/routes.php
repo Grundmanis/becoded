@@ -37,6 +37,9 @@ Route::group(['namespace' => 'Grundmanis\Becoded\Controllers', 'prefix' => 'beco
     Route::get('password/reset', ['as' => 'becoded.password.request','uses' => 'BecodedAuth\ForgotPasswordController@showLinkRequestForm']);
     Route::post('password/reset', ['as' => 'becoded.password.request','uses' => 'BecodedAuth\ResetPasswordController@reset']);
     Route::get('password/reset/{token}', ['as' => 'becoded.reset','uses' => 'BecodedAuth\ResetPasswordController@showResetForm']);
-    
 
 });
+
+Route::get('{slug}', [
+    'uses' => 'PageController@getCustomPage'
+])->where('slug', '([A-Za-z0-9\-\/]+)');

@@ -13,18 +13,15 @@
                     <div class="header">
                         <h2>
                             Pages
-                            <a href="{{ route('becoded.users.add') }}" class="btn btn-lg bg-light-blue waves-effect">Add new</a>
-                            <a href="{{ route('becoded.users.add') }}" class="btn btn-lg bg-orange waves-effect">Clear database</a>
+                            <a href="{{ route('becoded.pages.add') }}" class="btn btn-lg bg-light-blue waves-effect">Add new</a>
                         </h2>
                     </div>
                     <div class="body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <ul>
-                                    <li>Add new page/route</li>
                                     <li>Edit content of page/route</li>
                                     <li>Delete page/route</li>
-                                    <li>Delete not used pages from database</li>
                                 </ul>
                                 {{--@foreach($routes as $key => $route)--}}
                                     {{--@if ($route->methods[0] == 'GET' && !preg_match('/becoded/',$route->uri))--}}
@@ -39,6 +36,7 @@
                                         {{--<th>As</th>--}}
                                         <th>Tag</th>
                                         <th>In menu</th>
+                                        <th>Active</th>
                                         <th>Actions</th>
                                     </thead>
                                     <tfoot>
@@ -48,12 +46,13 @@
                                         {{--<th>As</th>--}}
                                         <th>Tag</th>
                                         <th>In menu</th>
+                                        <th>Active</th>
                                         <th>Actions</th>
                                     </tfoot>
                                     <tbody>
                                         @foreach($routes as $key => $route)
-                                            @if ($route->methods[0] == 'GET' && !preg_match('/becoded/',$route->uri))
-                                            <tr data-uri="{{ $route->uri }}" data-as="{{ !empty($route->action['as']) ? $route->action['as'] : ''}}" data-middleware="{{ is_array($route->action['middleware']) ? $route->action['middleware'][0] : $route->action['middleware'] }}" data-controller="{{ !empty($route->action['controller']) ? $route->action['controller'] : '' }}">
+                                            @if ($route->methods[0] == 'GET' && !preg_match('/becoded/',$route->uri) && !preg_match('/{slug}/',$route->uri))
+                                            <tr data-uri="{{ $route->uri }}" data-as="{{ !empty($route->action['as']) ? $route->action['as'] : ''}}" data-middleware="{{ !empty($route->action['middleware']) ? is_array($route->action['middleware']) ? $route->action['middleware'][0] : $route->action['middleware'] : ''}}" data-controller="{{ !empty($route->action['controller']) ? $route->action['controller'] : '' }}">
                                                 <td><a href="/{{ $route->uri }}">{{ $route->uri }}</a></td>
                                                 {{--<td>{{ is_array($route->action['middleware']) ? $route->action['middleware'][0] : $route->action['middleware'] }}</td>--}}
                                                 {{--<td>{{ !empty($route->action['controller']) ? $route->action['controller'] : '' }}</td>--}}
@@ -76,6 +75,10 @@
                                                 <td class="text-center">
                                                     <input @if (!empty($in_menu[$route->uri]) && $in_menu[$route->uri]->in_menu) checked @endif type="checkbox" id="md_checkbox_<?= $key; ?>" class="filled-in chk-col-purple js-page-in-menu" />
                                                     <label for="md_checkbox_<?= $key; ?>"></label>
+                                                </td>
+                                                <td class="text-center">
+                                                    <input @if (!empty($in_menu[$route->uri]) && $in_menu[$route->uri]->active) checked @endif type="checkbox" id="active_checkbox_<?= $key; ?>" class="filled-in chk-col-purple js-page-active" />
+                                                    <label for="active_checkbox_<?= $key; ?>"></label>
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('becoded.pages') }}" class="btn bg-deep-purple waves-effect">

@@ -1,17 +1,22 @@
 <?php
 namespace Grundmanis\Becoded\Controllers;
 
+use Grundmanis\Becoded\Models\BecodedPage;
 use Grundmanis\Becoded\Models\BecodedUser;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Validator;
 
 class PageController extends BaseController
 {
 
-    public function getPages(Request $request)
+    public function getCustomPage($slug = null) {
+        $page = BecodedPage::where('route', $slug)->where('active', 1);
+        $page = $page->firstOrFail();
+        return view($page->template)->with('page', $page);
+    }
+    
+    public function getPages()
     {
         $routes = Route::getRoutes();
         $pages = DB::table('becoded_pages')->get();
@@ -115,7 +120,50 @@ class PageController extends BaseController
             $result['result'] = 1;
             $result['response'] = 'Page tagged successfully';
 
-        } else {
+        }
+        else if ($request->set_active) {
+            $route = DB::table('becoded_pages')
+                ->where('uri','=',$request->uri)
+                ->get();
+
+            if (!count($route)) {
+                // Create page and set active
+                DB::table('becoded_pages')
+                    ->insert([
+                        'uri' => $request->uri,
+                        'middleware' => $request->middleware,
+                        'controller' => $request->controller,
+                        'as' => $request->as,
+                        'active' => $request->active == 'true' ? 1 : 0,
+                        'tag' => $request->tag,
+                    ]);
+
+                DB::table('becoded_logs')->insert(
+                    [
+                        'text' => 'Page created and ' . $request->uri . ($request->active == 'false' ? 'de' : '') . 'activated',
+                        'icon' => 'menu',
+                    ]
+                );
+
+            } else {
+                DB::table('becoded_pages')
+                    ->where('uri','=',$request->uri)
+                    ->update(['active' => $request->active == 'true' ? 1 : 0]);
+
+                DB::table('becoded_logs')->insert(
+                    [
+                        'text' => 'Page ' . $request->uri . ($request->active == 'false' ? 'de' : '') . 'activated',
+                        'icon' => 'menu',
+                    ]
+                );
+
+            }
+
+            $result['result'] = 1;
+            $result['response'] = 'Page ' . ($request->active == 'false' ? 'de' : '') . 'activated';
+
+        }
+        else {
             $result['result'] = 0;
             $result['response'] = 'Couldn\'t save';
         }
@@ -133,11 +181,19 @@ class PageController extends BaseController
     public function postAddPage(Request $request)
     {
 
-        $user = new BecodedUser();
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->name = $request->name;
-        $user->save();
+        dump($_POST);
+        DB::table('becoded_pages')->insert([
+           'text' =>  $request->text,
+           'uri' =>  $request->uri,
+           'title' =>  $request->title,
+           'pid' =>  $request->pid,
+           'template' =>  $request->template,
+           'tag' =>  $request->tag,
+           'excerpt' =>  $request->excerpt,
+           'in_menu' =>  $request->in_menu ? 1 : 0,
+           'active' =>  $request->active ? 1 : 0,
+        ]);
+
         return redirect()->route('becoded.pages');
 
     }
