@@ -11,20 +11,21 @@ class PageController extends BaseController
 {
 
     public function getCustomPage($slug = null) {
-        $page = BecodedPage::where('route', $slug)->where('active', 1);
-        $page = $page->firstOrFail();
-        return view($page->template)->with('page', $page);
+//        $page = BecodedPage::where('route', $slug)->where('active', 1);
+//        $page = $page->firstOrFail();
+//        return view($page->template)->with('page', $page);
     }
     
     public function getPages()
     {
         $routes = Route::getRoutes();
-        $pages = DB::table('becoded_pages')->get();
+        $static_pages = DB::table('becoded_pages')->where('type','=','static')->get();
+        $pages = DB::table('becoded_pages')->where('type','=','dynamic')->get();
         $in_menu = [];
-        foreach ($pages as $page) {
+        foreach ($static_pages as $page) {
             $in_menu[$page->uri] = $page;
         }
-        return view('becoded_view::pages.index', ['routes' => $routes, 'in_menu' => $in_menu]);
+        return view('becoded_view::pages.index', ['routes' => $routes, 'in_menu' => $in_menu, 'pages' => $pages]);
     }
 
     public function postPages(Request $request)
@@ -47,6 +48,7 @@ class PageController extends BaseController
                     ->insert([
                         'uri' => $request->uri,
                         'middleware' => $request->middleware,
+                        'type' => $request->type,
                         'controller' => $request->controller,
                         'as' => $request->as,
                         'in_menu' => 1,
@@ -92,6 +94,7 @@ class PageController extends BaseController
                         'uri' => $request->uri,
                         'middleware' => $request->middleware,
                         'controller' => $request->controller,
+                        'type' => $request->type,
                         'as' => $request->as,
                         'tag' => $request->tag,
                     ]);
@@ -133,6 +136,7 @@ class PageController extends BaseController
                         'uri' => $request->uri,
                         'middleware' => $request->middleware,
                         'controller' => $request->controller,
+                        'type' => $request->type,
                         'as' => $request->as,
                         'active' => $request->active == 'true' ? 1 : 0,
                         'tag' => $request->tag,

@@ -40,6 +40,6 @@ Route::group(['namespace' => 'Grundmanis\Becoded\Controllers', 'prefix' => 'beco
 
 });
 
-Route::get('{slug}', [
-    'uses' => 'PageController@getCustomPage'
-])->where('slug', '([A-Za-z0-9\-\/]+)');
+//Route::get('{slug}', [
+//    'uses' => 'Grundmanis\Becoded\Controllers\PageController@getCustomPage'
+//])->where('slug', '([A-Za-z0-9\-\/]+)');

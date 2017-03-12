@@ -7,11 +7,13 @@ $(function () {
     });
 
     $('.js-page-in-menu').click(function (e) {
-        var $this = $(this).closest('tr'),
-            uri = $this.data('uri'),
-            middleware = $this.data('middleware'),
-            as = $this.data('as'),
-            controller = $this.data('controller');
+        var $this = $(this),
+            tr = $this.closest('tr'),
+            uri = tr.data('uri'),
+            type = tr.data('type'),
+            middleware = tr.data('middleware'),
+            as = tr.data('as'),
+            controller = tr.data('controller');
 
         $.ajax({
            type: 'POST',
@@ -19,6 +21,7 @@ $(function () {
             data: {
                 in_menu: true,
                 uri: uri,
+                type: type,
                 controller: controller,
                 middleware: middleware,
                 as: as
@@ -52,6 +55,7 @@ $(function () {
         var $this = $(this),
             tr = $(this).closest('tr'),
             uri = tr.data('uri'),
+            type = tr.data('type'),
             middleware = tr.data('middleware'),
             as = tr.data('as'),
             controller = tr.data('controller'),
@@ -66,6 +70,7 @@ $(function () {
                 controller: controller,
                 middleware: middleware,
                 as: as,
+                type: type,
                 active: active
             },
             success: function (e) {
@@ -99,6 +104,7 @@ $(function () {
         var $this = $(this),
             tr = $this.closest('tr'),
             uri = tr.data('uri'),
+            type = tr.data('type'),
             middleware = tr.data('middleware'),
             as = tr.data('as'),
             controller = tr.data('controller'),
@@ -110,6 +116,7 @@ $(function () {
             data: {
                 change_tag: true,
                 tag: tag,
+                type: type,
                 uri: uri,
                 controller: controller,
                 middleware: middleware,

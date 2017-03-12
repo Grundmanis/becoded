@@ -39,6 +39,7 @@ class CreateBecodedTables extends Migration
             $table->integer('pid')->nullable();
             $table->string('uri')->unique();
             $table->string('title')->nullable();
+            $table->string('type');
             $table->longText('text')->nullable();
             $table->longText('excerpt')->nullable();
             $table->string('template')->nullable();
