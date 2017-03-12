@@ -1,7 +1,6 @@
 <?php
 namespace Grundmanis\Becoded\Controllers;
 
-use Grundmanis\Becoded\Models\BecodedPage;
 use Grundmanis\Becoded\Models\BecodedUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,10 +9,28 @@ use Illuminate\Support\Facades\Route;
 class PageController extends BaseController
 {
 
+    // Routings on web
     public function getCustomPage($slug = null) {
-//        $page = BecodedPage::where('route', $slug)->where('active', 1);
-//        $page = $page->firstOrFail();
-//        return view($page->template)->with('page', $page);
+
+        // first return static route
+        foreach (Route::getRoutes() as $route) {
+            if ($route->uri == $slug) {
+                $controller = $route->action['controller'];
+                if (!empty($controller)) {
+                    $controller = explode('@', $controller);
+                    $method = $controller[1];
+                    return app($controller[0])->$method();
+                }
+                else {
+                    dump('test');
+                }
+            }
+        }
+
+        // or get page from database
+        $page = DB::table('becoded_pages')->where('uri','=',$slug)->first();
+        return view($page->template)->with('page', $page);
+
     }
     
     public function getPages()
