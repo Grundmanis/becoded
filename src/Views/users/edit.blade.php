@@ -20,7 +20,7 @@
                     <div class="body">
 
                         <div class="form-group form-float">
-                            <div class="form-line">
+                            <div class="form-line focused">
                                 <input id="email" value="{{ $user->email }}" autocomplete="off" type="email" name="email" class="form-control">
                                 <label for="email" class="form-label">E-mail</label>
                             </div>
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="form-group form-float">
-                            <div class="form-line">
+                            <div class="form-line focused">
                                 <input id="name" value="{{ $user->name }}" autocomplete="off" type="text" name="name" class="form-control">
                                 <label for="name" class="form-label">First name</label>
                             </div>

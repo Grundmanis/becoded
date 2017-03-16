@@ -61,6 +61,8 @@
 <!-- Waves Effect Plugin Js -->
 <script src="{{ asset('vendor/becoded/plugins/node-waves/waves.js') }}"></script>
 
+<script src="{{ asset('vendor/becoded/js/pages/ui/tooltips-popovers.js') }}"></script>
+
 <script>
     var color = localStorage.getItem("becoded_theme_color");
     console.log(color);

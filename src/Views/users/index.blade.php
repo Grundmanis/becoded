@@ -19,6 +19,12 @@
                     <div class="body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                <ul>
+                                    <li>add avatar for user</li>
+                                    <li>add panel image bg for user</li>
+                                </ul>
+
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <th>Name</th>

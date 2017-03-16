@@ -20,8 +20,9 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <ul>
-                                    <li>Edit content of page/route</li>
-                                    <li>Delete page/route</li>
+                                    <li>csrf token is not displaying</li>
+                                    <li>display pages in parent select</li>
+                                    <li>display templates in select</li>
                                 </ul>
                                 {{--@foreach($routes as $key => $route)--}}
                                     {{--@if ($route->methods[0] == 'GET' && !preg_match('/becoded/',$route->uri))--}}
@@ -71,10 +72,10 @@
                                                     <label for="active_checkbox_<?= $key; ?>"></label>
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('becoded.pages') }}" class="btn bg-deep-purple waves-effect">
+                                                    <a href="{{ route('becoded.pages.edit', ['id' => $page->id]) }}" class="btn bg-deep-purple waves-effect">
                                                         <i class="material-icons">mode_edit</i>
                                                     </a>
-                                                    <a href="{{ route('becoded.pages') }}" class="btn bg-red waves-effect">
+                                                    <a href="{{ route('becoded.pages.delete', ['id' => $page->id]) }}" class="btn bg-red waves-effect">
                                                         <i class="material-icons">delete</i>
                                                     </a>
                                                 </td>

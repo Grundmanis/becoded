@@ -9,6 +9,21 @@
         <h2>DASHBOARD</h2>
     </div>
 
+    <ul>
+        <li>add breadcrumbs</li>
+        <li>fix multi-auth</li>
+        <li>add media files section</li>
+        <li>Create Classes to simplify tables and forms creating in admin</li>
+        <li>Clean the code - remove unnecessary scripts from page</li>
+        <li>Update composer package - remove assets from repository and load them with package.json by composer</li>
+        <li>Settings sidebar - what to put there?</li>
+        <li>Create functionality to modules folder</li>
+        <li>Forgot password fix</li>
+        <li>Reset password fix</li>
+        <li>Add seed for default user?</li>
+        <li>add languages to admin</li>
+    </ul>
+
     <!-- Widgets -->
     <div class="row clearfix">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">

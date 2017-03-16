@@ -15,20 +15,25 @@ class PageController extends BaseController
         // first return static route
         foreach (Route::getRoutes() as $route) {
             if ($route->uri == $slug) {
-                $controller = $route->action['controller'];
-                if (!empty($controller)) {
+                // route must use controller
+                if (!empty($route->action['controller'])) {
+                    $controller = $route->action['controller'];
                     $controller = explode('@', $controller);
                     $method = $controller[1];
                     return app($controller[0])->$method();
-                }
-                else {
-                    dump('test');
+                } else {
+                    // TODO
+                    die('Route must use controller');
                 }
             }
         }
 
         // or get page from database
-        $page = DB::table('becoded_pages')->where('uri','=',$slug)->first();
+        $page = DB::table('becoded_pages')->where('uri','=',$slug)->where('active','=',1)->first();
+        if (!$page) {
+            // TODO
+            die('Page does not exist or not active');
+        }
         return view($page->template)->with('page', $page);
 
     }
@@ -202,15 +207,15 @@ class PageController extends BaseController
     public function postAddPage(Request $request)
     {
 
-        dump($_POST);
         DB::table('becoded_pages')->insert([
            'text' =>  $request->text,
-           'uri' =>  $request->uri,
+           'uri' =>  str_replace(' ','-',strtolower($request->uri)),
            'title' =>  $request->title,
            'pid' =>  $request->pid,
            'template' =>  $request->template,
            'tag' =>  $request->tag,
            'excerpt' =>  $request->excerpt,
+           'type' =>  'dynamic',
            'in_menu' =>  $request->in_menu ? 1 : 0,
            'active' =>  $request->active ? 1 : 0,
         ]);
@@ -222,8 +227,7 @@ class PageController extends BaseController
     public function getDeletePage(Request $request, $id)
     {
 
-        $user = BecodedUser::find($id);
-        $user->delete();
+        DB::table('becoded_pages')->where('id','=',$id)->delete();
 
         return redirect()->route('becoded.pages');
 
@@ -232,21 +236,27 @@ class PageController extends BaseController
     public function getEditPage(Request $request, $id)
     {
 
-        $user = BecodedUser::find($id);
-        return view('becoded_view::pages.edit', ['user' => $user]);
+        $page = DB::table('becoded_pages')->where('id','=',$id)->first();
+        return view('becoded_view::pages.edit', ['page' => $page]);
 
     }
 
     public function postEditPage(Request $request, $id)
     {
 
-        $user = BecodedUser::find($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        if ($request->password) {
-            $user->password = bcrypt($request->password);
-        }
-        $user->update();
+        DB::table('becoded_pages')->where('id','=',$id)->update([
+            'text' =>  $request->text,
+            'uri' =>  str_replace(' ','-',strtolower($request->uri)),
+            'title' =>  $request->title,
+            'pid' =>  $request->pid,
+            'template' =>  $request->template,
+            'tag' =>  $request->tag,
+            'excerpt' =>  $request->excerpt,
+            'type' =>  'dynamic',
+            'in_menu' =>  $request->in_menu ? 1 : 0,
+            'active' =>  $request->active ? 1 : 0,
+        ]);
+
         return redirect()->route('becoded.pages');
 
     }
